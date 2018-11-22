@@ -30,8 +30,10 @@ spec:
         - --user-agent-comment=kubeapps/{{ .Chart.AppVersion }}
         - --repo-sync-image={{ template "kubeapps.image" (list .Values.apprepository.syncImage .Values.global) }}
         - --namespace={{ .Release.Namespace }}
+{{- if .Values.mongodb.enabled }}
         - --mongo-url={{ template "kubeapps.mongodb.fullname" . }}
         - --mongo-secret-name={{ .Values.mongodb.existingSecret }}
+{{- end }}
         resources:
 {{ toYaml .Values.apprepository.resources | indent 12 }}
     {{- with .Values.apprepository.nodeSelector }}
