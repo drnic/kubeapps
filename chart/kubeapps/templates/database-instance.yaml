@@ -1,0 +1,10 @@
+{{- if .Values.svcat.mongodb.class -}}
+# svcat provision app-db --class cleardb --plan spark
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: {{ include "kubeapps.svcat.mongodb-instance.fullname" . }}
+spec:
+  clusterServiceClassExternalName: {{ .Values.svcat.mongodb.class }}
+  clusterServicePlanExternalName: {{ .Values.svcat.mongodb.plan }}
+{{- end -}}

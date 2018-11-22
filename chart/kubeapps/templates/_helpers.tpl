@@ -91,6 +91,27 @@ Create name for the mongodb secret bootstrap job
 {{- end -}}
 
 {{/*
+Create name for the svcat mongodb service instance
+*/}}
+{{- define "kubeapps.svcat.mongodb-instance.fullname" -}}
+{{ template "kubeapps.fullname" . }}-svcat-instance
+{{- end -}}
+
+{{/*
+Create name for the svcat mongodb service binding
+*/}}
+{{- define "kubeapps.svcat.mongodb-binding.fullname" -}}
+{{ template "kubeapps.fullname" . }}-svcat-binding
+{{- end -}}
+
+{{/*
+Create name for the secret from svcat mongodb service binding
+*/}}
+{{- define "kubeapps.svcat.mongodb-secret.fullname" -}}
+{{ template "kubeapps.fullname" . }}-svcat-secret
+{{- end -}}
+
+{{/*
 Create name for the kubeapps upgrade job
 */}}
 {{- define "kubeapps.kubeapps-jobs-upgrade.fullname" -}}

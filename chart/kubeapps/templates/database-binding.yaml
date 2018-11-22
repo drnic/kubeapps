@@ -1,0 +1,11 @@
+{{- if .Values.svcat.mongodb.class -}}
+# svcat bind app-db --name db-binding --secret-name db-secret
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceBinding
+metadata:
+  name: {{ include "kubeapps.svcat.mongodb-binding.fullname" . }}
+spec:
+  instanceRef:
+    name: {{ include "kubeapps.svcat.mongodb-instance.fullname" . }}
+  secretName: {{ template "kubeapps.svcat.mongodb-secret.fullname" . }}
+{{- end -}}

@@ -227,12 +227,22 @@ dashboard:
   tolerations: []
   affinity: {}
 
+svcat:
+  # If setting `svcat.mongodb.class` and `svcat.mongodb.plan`,
+  # then also set `mongodb.enabled = false` to stop chart installation
+  mongodb:
+    class: ~ # e.g. mlab
+    plan:  ~ # e.g. mlab's sandbox
+
 ##
 ## MongoDB chart configuration
 ##
 ## https://github.com/helm/charts/blob/master/stable/mongodb/values.yaml
 ##
 mongodb:
+  # Disable if using Service Catalog bindings instead
+  enabled: true
+
   # Kubeapps uses MongoDB as a cache and persistence is not required
   persistence:
     enabled: false
